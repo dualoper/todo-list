@@ -46,9 +46,9 @@ const AddItem = (props) => {
         </Select>
       </FormControl>
       {
-        props.id? <Button onClick={()=>props.updateHandler(props.id)} variant='contained' color='success' sx={{ px: 5, m: 1 }}>UPDATE</Button>
-        :
-        <Button onClick={props.submitHandler} variant='contained' color='success' sx={{ px: 5, m: 1 }}>ADD</Button>
+        props.id ? <Button onClick={() => props.updateHandler(props.id)} variant='contained' color='success' sx={{ px: 5, m: 1 }}>UPDATE</Button>
+          :
+          <Button onClick={props.submitHandler} variant='contained' color='success' sx={{ px: 5, m: 1 }}>ADD</Button>
       }
     </>
   )

@@ -19,7 +19,7 @@ const Main = () => {
     setList(result);
   }
 
-  //inputdata
+  //input data
   const inputHandler = e => {
     setInput((values) => ({
       ...values,
@@ -89,7 +89,7 @@ const Main = () => {
   return (
     <>
       <h1>TODO LIST</h1>
-      <AddItem input={input} inputHandler={inputHandler} submitHandler={submitHandler} id={id} updateHandler = {updateHandler}/>
+      <AddItem input={input} inputHandler={inputHandler} submitHandler={submitHandler} id={id} updateHandler={updateHandler} />
 
       <ListBox list={list} deleteHandler={deleteHandler} getItem={getItem} />
     </>

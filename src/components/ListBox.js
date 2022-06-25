@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import ShowDate from './ShowDate';
 
 const ListBox = (props) => {
 
@@ -20,19 +21,19 @@ const ListBox = (props) => {
         </TableHead>
         <TableBody>
           {
-            props.list ? props.list.map((item, index)=> (
+            props.list ? props.list.map((item, index) => (
               <TableRow>
-                <TableCell>{index+1}</TableCell>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.title}</TableCell>
-                <TableCell>{item.createdOn}</TableCell>
-                <TableCell>{item.dueDate}</TableCell>
+                <TableCell><ShowDate dt={item.createdOn} /></TableCell>
+                <TableCell><ShowDate dt={item.dueDate} /></TableCell>
                 <TableCell>{item.status}</TableCell>
                 <TableCell>{item.priority}</TableCell>
                 <TableCell>
                   <Button
-                  onClick={()=>props.deleteHandler(item._id)} variant="contained" color='error'>DELETE</Button>
+                    onClick={() => props.deleteHandler(item._id)} variant="contained" color='error'>DELETE</Button>
                   <Button
-                  onClick={()=>props.getItem(item._id)} variant="outlined">EDIT</Button>
+                    onClick={() => props.getItem(item._id)} variant="outlined">EDIT</Button>
                 </TableCell>
               </TableRow>
             )) : ''}
