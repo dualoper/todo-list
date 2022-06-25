@@ -21,7 +21,7 @@ const ListBox = (props) => {
         </TableHead>
         <TableBody>
           {
-            props.list ? props.list.map((item, index) => (
+            props.list.length>0 ? props.list.map((item, index) => (
               <TableRow>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.title}</TableCell>
@@ -36,7 +36,7 @@ const ListBox = (props) => {
                     onClick={() => props.getItem(item._id)} variant="outlined">EDIT</Button>
                 </TableCell>
               </TableRow>
-            )) : ''}
+            )) : <h1>Not Found!</h1>}
         </TableBody>
       </Table>
     </>

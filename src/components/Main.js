@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AddItem from './AddItem';
 import ListBox from './ListBox';
+import { TextField } from '@mui/material';
 
 const Main = () => {
-  const [list, setList] = useState();
+  const [list, setList] = useState([]);
   const [id, setId] = useState();
   const [input, setInput] = useState({
     title: '',
@@ -80,6 +81,20 @@ const Main = () => {
     getData();
   }
 
+
+  const searchHandler = async (key) => {
+    if(key){
+      let result = await fetch(`http://localhost:8000/search/${key}`);
+    result = await result.json();
+    if (result) {
+      
+      setList(result);
+    }
+    } else{
+      getData();
+    };
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -89,7 +104,10 @@ const Main = () => {
   return (
     <>
       <h1>TODO LIST</h1>
+
       <AddItem input={input} inputHandler={inputHandler} submitHandler={submitHandler} id={id} updateHandler={updateHandler} />
+
+      <TextField type="search" onChange={(e) => searchHandler(e.target.value)}/>
 
       <ListBox list={list} deleteHandler={deleteHandler} getItem={getItem} />
     </>
