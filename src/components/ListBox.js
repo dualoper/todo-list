@@ -7,7 +7,7 @@ const ListBox = (props) => {
 
   return (
     <>
-      <Table stickyHeader>
+      <Table stickyHeader sx={{ width: '75%', margin: '5% auto', border: '1px solid', boxShadow: '0 0 10px #ff0000' }} size="small">
         <TableHead>
           <TableRow>
             <TableCell>SL. NO.</TableCell>
@@ -19,10 +19,14 @@ const ListBox = (props) => {
             <TableCell>ACTION</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody sx={{ color: 'white' }}>
           {
-            props.list.length>0 ? props.list.map((item, index) => (
-              <TableRow>
+            props.list.length > 0 ? props.list.map((item, index) => (
+              <TableRow sx={{'&:hover':{
+                boxShadow: '0 0 20px green',
+                backgroundColor:  '#343333f0',
+                cursor: 'pointer'
+              }}}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.title}</TableCell>
                 <TableCell><ShowDate dt={item.createdOn} /></TableCell>
