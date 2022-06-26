@@ -15,8 +15,8 @@ const ShowDate = (props) => {
 
   return (
     <>
-      <small>{day}</small> <br/>
-      {`${month}, ${date}`} <br/>
+      <small>{day}</small> <br />
+      {`${month}, ${date}`} <br />
       <small>{year}</small>
     </>
   )

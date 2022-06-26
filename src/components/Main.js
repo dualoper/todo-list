@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AddItem from './AddItem';
 import ListBox from './ListBox';
-import { TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 
 const Main = () => {
   const [list, setList] = useState([]);
@@ -17,7 +17,7 @@ const Main = () => {
   const getData = async () => {
     let result = await fetch('http://localhost:8000/read');
     result = await result.json();
-    setList(result);
+    setList(result.reverse());
   }
 
   //input data
@@ -83,14 +83,14 @@ const Main = () => {
 
 
   const searchHandler = async (key) => {
-    if(key){
+    if (key) {
       let result = await fetch(`http://localhost:8000/search/${key}`);
-    result = await result.json();
-    if (result) {
-      
-      setList(result);
-    }
-    } else{
+      result = await result.json();
+      if (result) {
+
+        setList(result.reverse());
+      }
+    } else {
       getData();
     };
   }
@@ -103,13 +103,13 @@ const Main = () => {
 
   return (
     <>
-      <h1>TODO LIST</h1>
-
       <AddItem input={input} inputHandler={inputHandler} submitHandler={submitHandler} id={id} updateHandler={updateHandler} />
 
-      <TextField type="search" onChange={(e) => searchHandler(e.target.value)}/>
-
-      <ListBox list={list} deleteHandler={deleteHandler} getItem={getItem} />
+      <Box sx={{ width: '75%', borderRadius: '16px', margin: '5% auto', border: '1px solid', boxShadow: '0 0 10px #ff0000' }}>
+        <TextField type="search" onChange={(e) => searchHandler(e.target.value)} sx={{m:2, ml:5, width: '300px'}} size='small'/>
+        
+        <ListBox list={list} deleteHandler={deleteHandler} getItem={getItem} />
+      </Box>
     </>
   )
 }

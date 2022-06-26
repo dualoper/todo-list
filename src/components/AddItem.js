@@ -1,10 +1,17 @@
-import { FormControl, Button, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, TextField, Box, IconButton } from '@mui/material';
+import AddCircle from '@mui/icons-material/AddCircle';
+import CheckCircle from '@mui/icons-material/CheckCircle';
 import React from 'react'
 
 const AddItem = (props) => {
 
   return (
-    <>
+
+    <Box sx={{
+      width: '55%', padding: 'auto', borderRadius: '16px', margin: 'auto', border: '1px solid', '&:hover': {
+        boxShadow: '0 0 20px green'
+      }
+    }}>
       <TextField
         name='title'
         value={props.input.title}
@@ -46,11 +53,16 @@ const AddItem = (props) => {
         </Select>
       </FormControl>
       {
-        props.id ? <Button onClick={() => props.updateHandler(props.id)} variant='contained' color='success' sx={{ px: 5, m: 1 }}>UPDATE</Button>
+        props.id ? <IconButton>
+          <CheckCircle onClick={() => props.updateHandler(props.id)} color='success' sx={{ fontSize: '45px' }} />
+        </IconButton>
           :
-          <Button onClick={props.submitHandler} variant='contained' color='success' sx={{ px: 5, m: 1 }}>ADD</Button>
+          <IconButton>
+            <AddCircle onClick={props.submitHandler} color='success' sx={{ fontSize: '45px' }} />
+          </IconButton>
       }
-    </>
+    </Box>
+
   )
 }
 
